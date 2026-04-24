@@ -8,6 +8,7 @@
 |------|------|
 | `run_simulator.py` | 基础模拟器，随机策略 |
 | `run_vpt_policy.py` | VPT 预训练模型推理 |
+| `run_steve1_policy.py` | STEVE-1 预训练模型推理 |
 | `run_rocket_policy.py` | ROCKET-1 预训练模型推理 |
 
 ## 本地运行
@@ -26,6 +27,9 @@ python run_simulator.py
 
 # VPT 模型推理
 python run_vpt_policy.py
+
+# STEVE-1 模型推理（文本引导）
+python run_steve1_policy.py
 
 # ROCKET-1 模型推理
 python run_rocket_policy.py
@@ -68,6 +72,8 @@ docker run -it --rm -v ${PWD}\examples:/workspace/examples -w /workspace/example
 ```bash
 docker run -it --rm -v ${PWD}\examples:/workspace/examples -w /workspace/examples minestudio python run_vpt_policy.py
 
+docker run -it --rm -v ${PWD}\examples:/workspace/examples -w /workspace/examples minestudio python run_steve1_policy.py
+
 docker run -it --rm -v ${PWD}\examples:/workspace/examples -w /workspace/examples minestudio python run_rocket_policy.py
 ```
 
@@ -89,6 +95,7 @@ examples/
 ├── README.md
 ├── run_simulator.py       # 基础模拟器示例
 ├── run_vpt_policy.py     # VPT 模型示例
+├── run_steve1_policy.py  # STEVE-1 模型示例
 ├── run_rocket_policy.py   # ROCKET-1 模型示例
 └── output/               # 生成的视频文件
 ```
