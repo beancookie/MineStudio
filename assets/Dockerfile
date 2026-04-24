@@ -33,7 +33,3 @@ RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && 
     pip install --upgrade pip && \
     pip install MineStudio && \
     python -m minestudio.simulator.entry -y
-
-FROM deps AS runtime
-
-CMD ["python", "-m", "minestudio.simulator.entry"]
