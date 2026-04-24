@@ -9,18 +9,41 @@
 ```
 hackathon/
 ├── README.md              # 本文件
-├── run_steve1_bridge.py  # 核心代码
-└── output/               # 生成视频
+├── Dockerfile            # Docker 配置
+├── run_steve1_bridge.py # 核心代码
+└── output/              # 生成视频
 ```
 
-## 运行
+## 本地运行
 
 ```bash
-# 本地运行
 python hackathon/run_steve1_bridge.py
+```
 
-# Docker 运行
-docker run -it --rm -v ${PWD}/hackathon:/workspace/hackathon -w /workspace/hackathon minestudio python run_steve1_bridge.py
+## Docker 运行
+
+### 构建镜像
+
+```bash
+docker build --platform=linux/amd64 -t minestudio -f hackathon/Dockerfile .
+```
+
+### 运行容器
+
+**Linux/macOS：**
+
+```bash
+docker run -it --rm \
+  -v $(pwd)/hackathon:/workspace/hackathon \
+  -w /workspace/hackathon \
+  minestudio \
+  python run_steve1_bridge.py
+```
+
+**Windows PowerShell：**
+
+```powershell
+docker run -it --rm -v ${PWD}\hackathon:/workspace/hackathon -w /workspace/hackathon minestudio python run_steve1_bridge.py
 ```
 
 ## 技术方案
