@@ -33,7 +33,7 @@ docker build --platform=linux/amd64 -t minestudio -f hackathon/Dockerfile .
 **Linux/macOS：**
 
 ```bash
-docker run -it --rm \
+docker run -it \
   -v $(pwd)/hackathon:/workspace/hackathon \
   -w /workspace/hackathon \
   minestudio \
@@ -43,7 +43,7 @@ docker run -it --rm \
 **Windows PowerShell：**
 
 ```powershell
-docker run -it --rm -v ${PWD}\hackathon:/workspace/hackathon -w /workspace/hackathon minestudio python run_steve1_bridge.py
+docker run -it -v ${PWD}\hackathon:/workspace/hackathon -w /workspace/hackathon minestudio python run_steve1_bridge.py
 ```
 
 ## 技术方案
