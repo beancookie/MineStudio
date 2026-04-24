@@ -1,6 +1,7 @@
-FROM nvcr.io/nvidia/pytorch:24.01-py3
+FROM swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/nvcr.io/nvidia/pytorch:24.01-py3 AS base
 
-RUN apt-get update && \
+RUN sed -i 's|cn\.archive\.ubuntu\.com|mirrors.tuna.tsinghua.edu.cn|g' /etc/apt/sources.list 2>/dev/null || true && \
+    apt-get update && \
     apt-get install -y \
     wget \
     git \
@@ -25,8 +26,14 @@ RUN apt-get update && \
     unzip \
     openjdk-8-jdk
 
-RUN pip install --upgrade pip &&\
+FROM base AS deps
+
+ENV HF_ENDPOINT=https://hf-mirror.com
+RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
+    pip install --upgrade pip && \
     pip install MineStudio && \
     python -m minestudio.simulator.entry -y
+
+FROM deps AS runtime
 
 CMD ["python", "-m", "minestudio.simulator.entry"]
